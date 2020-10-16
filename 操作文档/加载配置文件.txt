@@ -1,0 +1,23 @@
+将tools复制到用户目录下（可取scp -r kfts@10.253.147.6:/kfts/tools）
+用户目录下   ll -a 可以看到 .bash_profile文件
+
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin:/home/kfts/tools/oracle
+LD_LIBRARY_PATH=/home/kfts/its/libs:/home/kfts/tools/oracle
+export LD_LIBRARY_PATH=/home/kfts/tools/oracle:/home/kfts/data/v2.6/its/libs:$LD_LIBRARY_PATH
+export PATH
+export TNS_ADMIN=/home/kfts/tools/oracle/network/admin
+export ORACLE_HOME=/home/kfts/tools/oracle/
+ulimit -c unlimited
+export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK
+export LANG=zh_CN.gbk
+
+修改完毕后  source  .bash_profile

@@ -1,0 +1,27 @@
+创建文件C:\data_dir\1.sql内容如下：
+-----------------------------------------
+   set heading off;
+   set echo off;
+   set feedback off;
+   set termout on;
+   spool C:\data_dir\2.sql;
+   Select 'alter table '||table_name||' allocate extent;' from user_tables where num_rows=0;
+   spool off;
+-----------------------------------------
+命令行进入数据库对应用户
+执行C:\data_dir\1.sql，命令如下（将获取所有空表）：
+   -----------
+   SQL>@ C:\data_dir\1.sql;
+   -----------
+
+执行完毕后得到C:\data_dir\2.sql文件
+在2.sql文件末尾加上  commit;
+然后执行如下命令，对空表分配空间：
+   -----------
+   SQL>@ C:\data_dir\1.sql;
+   -----------
+此时执行exp命令，即可把包括空表在内的所有表，正常导出
+
+为保证以后能全表导出，应登录sys用户刷入：
+alter system set deferred_segment_creation=false;
+

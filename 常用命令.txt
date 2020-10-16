@@ -1,0 +1,123 @@
+设置logs目录锁定：
+svn update --set-depth=exclude logs
+svn up -r 2742
+解决冲突：svn resolve --accept  working  future_report_standard
+
+windows重启计算机：
+shutdown -r
+shutdown -s -t 0 立刻关机
+linux重启：
+shutdown -r now 立刻重启
+shutdown -h now立刻关机
+
+删除logs文件:
+rm -r logs
+
+修改文件名
+mv file1 file2
+
+传递文件：
+业务核心替换：
+scp -r kfts@10.243.140.108:/kfts/ITSCompiler/compiler_output/branch/its_service/V2.6 
+/home/kfts/its/its_service
+
+查看电脑配置cmd：
+msinfo32
+linux：free -g
+           free -h
+
+启动监听程序并注册数据库服务：
+启动 Net Manager，在LISTENER中选数据库服务，添加数据库，oracle主目录C:\app\wei.zhou\product\11.2.0\dbhome_1
+保存后在命令行输入lsnrctl reloa
+执行lsnrctl reloa时报错INS-01153：未能处理字符串
+删除C:\app\its\diag\tnslsnr\KS-SHA-VM190013\listener\trace下listener.log文件
+ORA-01109: 数据库未打开------------------------（手动删除了表空间文件）
+sqlplus 用户名/密码 as sysdba
+shutdown immediate
+startup mount
+alter database datafile 'C:\app\wei.zhou\oradata\ac\TS_WOLF.DBF' offline drop;
+alter database open;
+drop tablespace 表空间名字 including contents;
+（未指定数据库就进去之前 set ORACLE_SID=XE）
+drop user CORE cascade;不能删除查看进程
+select username, sid, serial# from v$session where username='CORE';
+alter system kill session'**,**';  杀掉进程资源
+c:>orakill orcl sid
+
+查看进程  ps -u kfts
+杀死进程  killall -9 java
+taskkill /im /f nginx.exe
+/im立即 /f强制结束进程
+
+关闭防火墙 
+service firewalld stop
+禁用防火墙
+firewall-cmd --state  //状态
+[root@rhel7 ~]# systemctl stop firewalld.service    //关闭一个服务
+[root@rhel7 ~]# systemctl disable firewalld.service   //开机时禁用
+                            systemctl enable firewalld.service   //开机时启用
+[root@rhel7 ~]# systemctl status firewalld.service   //显示状态
+
+查看端口是否打开 lsof -i:8060
+查看所有开启的端口号：netstat -aptn
+查看Tomcat占用进程号：ps -ef|grep tomcat
+根据进程号查看端口：sudo netstat -apn | grep 2077
+
+访问服务器命令 curl http://10.243.140.222:8080/ks/
+
+pip install pyinstaller
+报错后输入：python -m pip install --upgrade pip -i https://pypi.douban.com/simple
+pip install cx_Oracle
+pyinstaller -F
+安装selenium
+pip install selenium
+下载后安装
+python setup.py install
+
+免密登录
+cd ~/.ssh
+ssh-keygen -t rsa
+scp id_rsa.pub kfts@10.243.140.108:~/.ssh
+进入101服务器，将公钥导入到~/.ssh/authorized_keys，
+cd ~/.ssh
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+~/.ssh权限设置为700 
+~/.ssh/authorized_keys的权限设置为600
+
+远程桌面不能复制
+rdpclip.exe重启
+
+linux修改时间
+date -s "2020-06-02 16:58:50"
+查看Linux硬件时间：
+hwclock or hwclock --show
+让系统时间与硬件时钟同步：
+hwclock --hctosys
+windows修改时间
+time
+
+
+./svnlog.sh {'2020-09-01 00:00:00'} {'2020-09-03 00:00:00'} 2.6
+./svnlog.sh 45677 49000 2.6
+
+
+
+提取变更路径：
+svn diff -r 3681:3883 --summarize  http://10.253.47.223/svn/futmgV8/2source/unicenter/ks > ex.txt
+将两个文件合并：行对行
+paste -d: 1.txt 2.txt >3.txt
+将每行第一个字符替换成两个空格：
+sed -i 's/^..//' 1.txt
+给文件中的每一行开头添加xcopy：
+awk '{print "xcopy"$0}' 3.txt > 4.txt
+给文件中的每一行结尾添加/s /e /c /y /h /r
+awk '{print $0"/s /e /c /y /h /r"}' 4.txt > 5.txt
+
+(a)(?!.*\1)
+grep -o '.*((\)(?!.*\1))' tmp.txt
+
+
+
+
+
+
