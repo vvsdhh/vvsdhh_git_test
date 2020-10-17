@@ -1,0 +1,3 @@
+win+r 输入taskschd.msc启动定时任务设置窗口
+
+Regular_del.bat
