@@ -42,7 +42,7 @@ case "$1" in
                                    cd /home/kfts/its/$2/
                                    echo `./$1 -v`
                                    ;;
-                                  *)
+                                   *)
                                    echo "can not find destination"
                                    ;;
                               esac
@@ -79,7 +79,7 @@ case "$1" in
                                    cd /home/kfts/its/$2/
                                    echo `./$1 -v`
                                    ;;
-                                  *)
+                                   *)
                                    echo "can not find destination"
                                    ;;
                               esac
