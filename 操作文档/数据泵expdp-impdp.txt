@@ -1,0 +1,26 @@
+sqlplus /nolog
+conn / as sysdba
+
+--创建目录名
+create directory data_pump_dir as 'C:\ora\data';
+
+--赋权给目录名
+grant read,write on directory data_pump_dir to public;
+
+--查看目录名
+select * from dba_directories;
+
+--修改目录名
+create or replace directory data_pump_dir as 'C:\ora\data';
+
+--导出用户数据
+expdp clearing/clearing@ITS directory=data_pump_dir dumpfile=clearing.dmp logfile=clearing.log schemas=clearing
+expdp core/core@ITS directory=data_pump_dir dumpfile=core.dmp logfile=core.log schemas=core
+expdp risk/risk@ITS directory=data_pump_dir dumpfile=risk.dmp logfile=risk.log schemas=risk
+
+--导入用户数据
+impdp system/oracle@10.253.147.34/zhongboqs directory=data_pump_dir dumpfile=clearing20201019_1731.dmp logfile=clearing.log
+impdp system/oracle@10.253.147.34/zhongboqs directory=data_pump_dir dumpfile=risk20201019_1731.dmp logfile=risk.log
+impdp system/oracle@10.253.147.34/zhongboqs directory=data_pump_dir dumpfile=core20201019_1731.dmp logfile=core.log
+
+
