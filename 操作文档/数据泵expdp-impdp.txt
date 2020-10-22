@@ -21,6 +21,6 @@ expdp risk/risk@ITS directory=data_pump_dir dumpfile=risk.dmp logfile=risk.log s
 --导入用户数据
 impdp system/oracle@10.253.147.34/zhongboqs directory=data_pump_dir dumpfile=clearing20201019_1731.dmp logfile=clearing.log
 impdp system/oracle@10.253.147.34/zhongboqs directory=data_pump_dir dumpfile=risk20201019_1731.dmp logfile=risk.log
-impdp system/oracle@10.253.147.34/zhongboqs directory=data_pump_dir dumpfile=core20201019_1731.dmp logfile=core.log
+impdp system/oracle@10.253.147.34/zhongboqs directory=data_pump_dir dumpfile=core20201019_1731.dmp logfile=core.log   EXCLUDE=STATISTICS 
 
 
