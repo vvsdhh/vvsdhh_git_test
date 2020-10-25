@@ -1,0 +1,15 @@
+mysql -uroot -p
+mysql
+
+create database demo;
+
+use demo;
+
+create table employee
+(
+   id int primary key auto_increment,
+   code varchar(100),
+   name varchar(200)
+);
+
+insert into employee (code, name) values ("E01", "Jack");
